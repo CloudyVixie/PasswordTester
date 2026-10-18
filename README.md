@@ -1,8 +1,16 @@
 # PasswordTester
 
+<p align="center">
+  <img src="https://img.shields.io/badge/HTML-CSS%20%26%20JavaScript-1f6feb?style=flat-square" alt="HTML, CSS e JavaScript">
+  <img src="https://img.shields.io/badge/Node.js-Express-238636?style=flat-square" alt="Node.js e Express">
+  <img src="https://img.shields.io/badge/MariaDB-database-6c757d?style=flat-square" alt="MariaDB">
+</p>
+
 O PasswordTester é uma aplicação simples para analisar senhas e mostrar alguns fatores que influenciam sua força. Fiz o projeto em uma tarde de domingo para ter algo funcional para apresentar na feira de cursos da escola, já que o tema da minha turma é cibersegurança.
 
 A ideia surgiu como uma alternativa caso o projeto principal não estivesse pronto a tempo. Como também faz parte dos meus projetos, deixei o código no GitHub para manter meu portfólio organizado e ter uma cópia de segurança.
+
+---
 
 ## O que o projeto faz
 
@@ -63,7 +71,3 @@ O cenário offline apresentado usa uma referência de desempenho para NTLM e RTX
 ## Uso de IA
 
 Os textos da interface e o CSS foram feitos por IA. A aplicação foi montada para atender à proposta da feira e servir como um projeto demonstrável.
-
----
-
-Feito por Vixie Neves.
