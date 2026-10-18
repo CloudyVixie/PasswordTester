@@ -1,0 +1,449 @@
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    color-scheme: dark;
+
+    --fundo: #030704;
+    --painel: #080e09;
+    --campo: #020503;
+    --texto: #d7e8d9;
+    --texto-suave: #819786;
+
+    --verde: #39ff78;
+    --verde-claro: #9bffb5;
+    --verde-escuro: #13b84c;
+    --verde-fraco: rgba(57, 255, 120, 0.09);
+
+    --borda: rgba(57, 255, 120, 0.25);
+    --borda-forte: rgba(57, 255, 120, 0.65);
+}
+
+html {
+    min-height: 100%;
+    background: var(--fundo);
+}
+
+body {
+    position: relative;
+    isolation: isolate;
+
+    min-height: 100vh;
+    margin: 0;
+    padding: 32px 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow-x: hidden;
+
+    color: var(--texto);
+    font-family: "Consolas", "Courier New", monospace;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 35%,
+            rgba(20, 100, 42, 0.17),
+            transparent 60%
+        ),
+        var(--fundo);
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background-image:
+        linear-gradient(
+            rgba(57, 255, 120, 0.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(57, 255, 120, 0.035) 1px,
+            transparent 1px
+        );
+
+    background-size: 34px 34px;
+
+    mask-image: linear-gradient(
+        to bottom,
+        black,
+        transparent 90%
+    );
+
+    animation: gradeDigital 18s linear infinite;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: -50% 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background: linear-gradient(
+        transparent 45%,
+        rgba(57, 255, 120, 0.035) 50%,
+        transparent 55%
+    );
+
+    animation: varredura 12s linear infinite;
+}
+
+/* Painel */
+
+.painel {
+    position: relative;
+
+    width: 100%;
+    max-width: 510px;
+    padding: 30px;
+
+    background: rgba(8, 14, 9, 0.96);
+    border: 1px solid var(--borda);
+    border-radius: 5px;
+
+    box-shadow:
+        0 0 25px rgba(57, 255, 120, 0.055),
+        inset 0 0 35px rgba(57, 255, 120, 0.018);
+
+    animation: entradaPainel 0.8s cubic-bezier(0.2, 0.75, 0.25, 1) both;
+
+    transition:
+        border-color 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+.painel:hover {
+    border-color: rgba(57, 255, 120, 0.42);
+
+    box-shadow:
+        0 0 32px rgba(57, 255, 120, 0.075),
+        inset 0 0 35px rgba(57, 255, 120, 0.025);
+}
+
+.painel::before {
+    content: "● ● ●  //  TERMINAL DE IDENTIFICAÇÃO";
+
+    display: block;
+    margin: -30px -30px 28px;
+    padding: 13px 16px;
+
+    color: var(--verde);
+    background: rgba(57, 255, 120, 0.05);
+    border-bottom: 1px solid var(--borda);
+
+    font-size: 0.65rem;
+    letter-spacing: 1.3px;
+
+    animation: aparecer 0.6s 0.15s both;
+}
+
+/* Cabeçalho */
+
+.etiqueta {
+    margin: 0 0 14px;
+
+    color: var(--verde);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    animation: aparecer 0.6s 0.2s both;
+}
+
+h1 {
+    margin: 0 0 14px;
+
+    color: #f0fff2;
+    font-size: clamp(1.7rem, 5vw, 2.25rem);
+    line-height: 1.25;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+
+    animation: aparecer 0.7s 0.3s both;
+}
+
+h1::after {
+    content: "_";
+    margin-left: 4px;
+    color: var(--verde);
+
+    animation: cursorTerminal 1s steps(2, start) infinite;
+}
+
+.descricao {
+    margin-bottom: 26px;
+
+    color: var(--texto-suave);
+    font-size: 0.85rem;
+    line-height: 1.8;
+
+    animation: aparecer 0.7s 0.4s both;
+}
+
+/* Formulário */
+
+form {
+    animation: aparecer 0.7s 0.5s both;
+}
+
+label {
+    display: block;
+    margin: 22px 0 9px;
+
+    color: #b8d8bf;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+label::before {
+    content: "> ";
+    color: var(--verde);
+}
+
+/* Campos */
+
+input,
+select {
+    display: block;
+
+    width: 100%;
+    min-width: 0;
+    padding: 14px;
+
+    color: var(--verde);
+    background: var(--campo);
+
+    border: 1px solid #263c2b;
+    border-radius: 3px;
+
+    font: inherit;
+    font-size: 0.88rem;
+
+    transition:
+        border-color 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
+}
+
+input::placeholder {
+    color: #526957;
+}
+
+input:hover,
+select:hover {
+    border-color: rgba(57, 255, 120, 0.45);
+}
+
+input:focus,
+select:focus {
+    outline: none;
+
+    color: var(--verde-claro);
+    background: #040a05;
+    border-color: var(--verde);
+
+    box-shadow:
+        0 0 0 1px rgba(57, 255, 120, 0.08),
+        0 0 18px rgba(57, 255, 120, 0.09);
+
+    transform: translateY(-1px);
+}
+
+/* Botão */
+
+button {
+    width: 100%;
+    margin-top: 28px;
+    padding: 15px;
+
+    color: #020704;
+    background: var(--verde);
+
+    border: 1px solid var(--verde);
+    border-radius: 3px;
+
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    box-shadow: 0 0 18px rgba(57, 255, 120, 0.07);
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+button::before {
+    content: "> ";
+}
+
+button:hover:not(:disabled) {
+    color: #020704;
+    background: var(--verde-claro);
+
+    box-shadow:
+        0 0 15px rgba(57, 255, 120, 0.17),
+        0 0 35px rgba(57, 255, 120, 0.08);
+
+    transform: translateY(-2px);
+}
+
+button:active:not(:disabled) {
+    transform: translateY(1px) scale(0.99);
+}
+
+button:focus-visible {
+    outline: 2px solid var(--verde);
+    outline-offset: 4px;
+}
+
+button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Mensagens */
+
+#mensagem {
+    margin: 18px 0 0;
+
+    color: var(--verde);
+    font-size: 0.8rem;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+/* Créditos */
+
+.creditos {
+    margin-top: 22px;
+    padding-top: 16px;
+
+    border-top: 1px dashed var(--borda);
+
+    text-align: center;
+    animation: aparecer 0.8s 0.6s both;
+}
+
+.creditos p {
+    color: var(--texto-suave);
+    font-size: 0.68rem;
+    line-height: 1.8;
+}
+
+.creditos p + p {
+    color: var(--verde);
+    font-size: 0.65rem;
+}
+
+/* Animações */
+
+@keyframes entradaPainel {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.985);
+        filter: blur(3px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes cursorTerminal {
+    to {
+        visibility: hidden;
+    }
+}
+
+@keyframes gradeDigital {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 0 34px;
+    }
+}
+
+@keyframes varredura {
+    from {
+        transform: translateY(-30%);
+    }
+
+    to {
+        transform: translateY(30%);
+    }
+}
+
+/* Responsividade */
+
+@media (max-width: 480px) {
+    body {
+        padding: 18px 12px;
+    }
+
+    .painel {
+        padding: 22px 18px;
+    }
+
+    .painel::before {
+        margin: -22px -18px 24px;
+        padding: 12px;
+
+        font-size: 0.58rem;
+        letter-spacing: 0.8px;
+    }
+
+    h1 {
+        font-size: 1.65rem;
+    }
+}
+
+/* Preferência por menos movimento */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}

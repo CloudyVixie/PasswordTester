@@ -1,0 +1,864 @@
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    color-scheme: dark;
+
+    --fundo: #030704;
+    --painel: #080e09;
+    --campo: #020503;
+    --texto: #d7e8d9;
+    --texto-suave: #819786;
+
+    --verde: #39ff78;
+    --verde-claro: #9bffb5;
+    --verde-escuro: #13b84c;
+    --verde-fraco: rgba(57, 255, 120, 0.09);
+
+    --borda: rgba(57, 255, 120, 0.25);
+    --borda-forte: rgba(57, 255, 120, 0.65);
+}
+
+html {
+    min-height: 100%;
+    background: var(--fundo);
+}
+
+body {
+    position: relative;
+    isolation: isolate;
+
+    min-height: 100vh;
+    margin: 0;
+    padding: 32px 16px;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    color: var(--texto);
+    font-family: "Consolas", "Courier New", monospace;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 0%,
+            rgba(20, 100, 42, 0.17),
+            transparent 58%
+        ),
+        var(--fundo);
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background-image:
+        linear-gradient(
+            rgba(57, 255, 120, 0.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(57, 255, 120, 0.035) 1px,
+            transparent 1px
+        );
+
+    background-size: 34px 34px;
+
+    mask-image: linear-gradient(
+        to bottom,
+        black,
+        transparent 95%
+    );
+
+    animation: gradeDigital 18s linear infinite;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: -50% 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background: linear-gradient(
+        transparent 45%,
+        rgba(57, 255, 120, 0.035) 50%,
+        transparent 55%
+    );
+
+    animation: varredura 12s linear infinite;
+}
+
+/* Painel */
+
+.painel {
+    position: relative;
+
+    width: 100%;
+    max-width: 650px;
+    padding: 30px;
+
+    background: rgba(8, 14, 9, 0.96);
+    border: 1px solid var(--borda);
+    border-radius: 5px;
+
+    box-shadow:
+        0 0 25px rgba(57, 255, 120, 0.055),
+        inset 0 0 35px rgba(57, 255, 120, 0.018);
+
+    animation: entradaPainel 0.8s cubic-bezier(0.2, 0.75, 0.25, 1) both;
+
+    transition:
+        border-color 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+.painel:hover {
+    border-color: rgba(57, 255, 120, 0.42);
+
+    box-shadow:
+        0 0 32px rgba(57, 255, 120, 0.075),
+        inset 0 0 35px rgba(57, 255, 120, 0.025);
+}
+
+.painel::before {
+    content: "● ● ●  //  TERMINAL SEGURO";
+
+    display: block;
+    margin: -30px -30px 28px;
+    padding: 13px 16px;
+
+    color: var(--verde);
+    background: rgba(57, 255, 120, 0.05);
+    border-bottom: 1px solid var(--borda);
+
+    font-size: 0.68rem;
+    letter-spacing: 1.4px;
+
+    animation: aparecer 0.6s 0.15s both;
+}
+
+/* Títulos */
+
+.etiqueta {
+    margin: 0 0 14px;
+
+    color: var(--verde);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    text-shadow: 0 0 10px rgba(57, 255, 120, 0.2);
+
+    animation: aparecer 0.6s 0.2s both;
+}
+
+h1 {
+    margin: 0 0 12px;
+
+    color: #f0fff2;
+    font-size: clamp(1.7rem, 5vw, 2.4rem);
+    line-height: 1.25;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+
+    animation: aparecer 0.7s 0.3s both;
+}
+
+h1::after {
+    content: "_";
+    margin-left: 4px;
+    color: var(--verde);
+
+    animation: cursorTerminal 1s steps(2, start) infinite;
+}
+
+h2 {
+    margin: 0 0 16px;
+    color: var(--verde);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+}
+
+h3 {
+    margin: 0 0 12px;
+    color: var(--verde);
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.descricao {
+    color: var(--texto-suave);
+    font-size: 0.88rem;
+    line-height: 1.8;
+
+    animation: aparecer 0.7s 0.4s both;
+}
+
+/* Privacidade */
+
+.privacidade {
+    margin: 22px 0;
+    padding: 14px;
+
+    color: #a8ffbc;
+    background: rgba(57, 255, 120, 0.045);
+
+    border: 1px solid var(--borda);
+    border-left: 3px solid var(--verde);
+
+    font-size: 0.82rem;
+    line-height: 1.7;
+
+    animation: aparecer 0.7s 0.45s both;
+
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.privacidade:hover {
+    background: rgba(57, 255, 120, 0.07);
+    border-color: var(--borda-forte);
+}
+
+.privacidade::before {
+    content: "[ PROTOCOLO DE PRIVACIDADE ]";
+
+    display: block;
+    margin-bottom: 7px;
+
+    color: var(--verde);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* Analisador e recomendações */
+
+.analisador,
+.recomendacoes {
+    margin-top: 24px;
+    animation: aparecer 0.7s 0.5s both;
+}
+
+.analisador {
+    padding: 20px;
+
+    background: rgba(0, 0, 0, 0.22);
+    border: 1px solid var(--borda);
+    border-radius: 3px;
+
+    transition:
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+.analisador:focus-within {
+    border-color: var(--borda-forte);
+    box-shadow: 0 0 20px rgba(57, 255, 120, 0.045);
+}
+
+/* Campos */
+
+label {
+    display: block;
+    margin-bottom: 10px;
+
+    color: #b8d8bf;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+}
+
+label::before {
+    content: "> ";
+    color: var(--verde);
+}
+
+input,
+select {
+    width: 100%;
+    min-width: 0;
+    padding: 13px 14px;
+
+    color: var(--verde);
+    background: var(--campo);
+
+    border: 1px solid #263c2b;
+    border-radius: 3px;
+
+    font: inherit;
+    font-size: 0.9rem;
+
+    transition:
+        border-color 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
+}
+
+input::placeholder {
+    color: #526957;
+}
+
+input:hover {
+    border-color: rgba(57, 255, 120, 0.45);
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: var(--verde);
+    background: #040a05;
+
+    box-shadow:
+        0 0 0 1px rgba(57, 255, 120, 0.08),
+        0 0 18px rgba(57, 255, 120, 0.09);
+
+    transform: translateY(-1px);
+}
+
+.campo-senha {
+    display: flex;
+    gap: 8px;
+    align-items: stretch;
+}
+
+.campo-senha input {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Botões */
+
+button {
+    padding: 12px 16px;
+
+    color: var(--verde);
+    background: #0a160d;
+
+    border: 1px solid var(--borda);
+    border-radius: 3px;
+
+    font: inherit;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+button:hover:not(:disabled) {
+    color: #020704;
+    background: var(--verde);
+    border-color: var(--verde);
+
+    box-shadow: 0 0 16px rgba(57, 255, 120, 0.16);
+    transform: translateY(-2px);
+}
+
+button:active:not(:disabled) {
+    transform: translateY(1px) scale(0.99);
+}
+
+button:focus-visible {
+    outline: 2px solid var(--verde);
+    outline-offset: 3px;
+}
+
+button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* Botão de análise */
+
+#testar {
+    width: 100%;
+    margin-top: 14px;
+    padding: 15px;
+
+    color: #020704;
+    background: var(--verde);
+    border-color: var(--verde);
+
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    box-shadow: 0 0 18px rgba(57, 255, 120, 0.07);
+
+    transition:
+        background 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
+}
+
+#testar::before {
+    content: "> ";
+}
+
+#testar:hover:not(:disabled) {
+    background: var(--verde-claro);
+
+    box-shadow:
+        0 0 15px rgba(57, 255, 120, 0.2),
+        0 0 30px rgba(57, 255, 120, 0.08);
+}
+
+/* Erro de preenchimento */
+
+.erro-senha {
+    margin: 10px 0 0;
+    color: #ff8585;
+    font-size: 0.8rem;
+    line-height: 1.6;
+}
+
+.erro-senha::before {
+    content: "[ ERRO ] ";
+    font-weight: 700;
+}
+
+/* Contador */
+
+.tentativas {
+    margin: 16px 0 0;
+
+    color: var(--texto-suave);
+    text-align: center;
+    font-size: 0.75rem;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+.tentativas strong {
+    color: var(--verde);
+    font-size: 1rem;
+}
+
+/* Recomendações */
+
+#listarecomendacoes {
+    margin-top: 14px;
+    padding: 14px 14px 14px 32px;
+
+    color: var(--texto-suave);
+    background: rgba(57, 255, 120, 0.025);
+
+    border-left: 2px solid var(--verde-escuro);
+
+    font-size: 0.82rem;
+    line-height: 1.9;
+
+    animation: aparecer 0.3s ease both;
+}
+
+#listarecomendacoes li::marker,
+.dicas-senha li::marker {
+    color: var(--verde);
+}
+
+/* Resultado */
+
+.resultado {
+    margin-top: 28px;
+    padding-top: 24px;
+
+    border-top: 1px dashed var(--borda);
+
+    animation: entradaResultado 0.55s cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+.resultado > h2::before {
+    content: "> ";
+    color: var(--texto-suave);
+}
+
+.resumo-seguranca,
+.estimativa,
+.dicas-senha {
+    position: relative;
+
+    margin-top: 14px;
+    padding: 19px;
+
+    background: rgba(2, 7, 3, 0.72);
+    border: 1px solid var(--borda);
+    border-radius: 3px;
+
+    transition:
+        border-color 0.35s ease,
+        background 0.35s ease,
+        transform 0.35s ease;
+}
+
+.resumo-seguranca {
+    animation: aparecer 0.45s 0.05s both;
+}
+
+.estimativa {
+    animation: aparecer 0.45s 0.12s both;
+}
+
+.dicas-senha {
+    animation: aparecer 0.45s 0.19s both;
+}
+
+.resumo-seguranca:hover,
+.estimativa:hover,
+.dicas-senha:hover {
+    border-color: rgba(57, 255, 120, 0.45);
+    background: rgba(5, 13, 6, 0.92);
+    transform: translateY(-2px);
+}
+
+.resumo-seguranca::before,
+.estimativa::before,
+.dicas-senha::before {
+    content: "DADOS DO SISTEMA";
+
+    display: block;
+    margin-bottom: 15px;
+
+    color: var(--texto-suave);
+    font-size: 0.62rem;
+    letter-spacing: 1.5px;
+}
+
+.estimativa::before {
+    content: "SIMULAÇÃO DE ATAQUE";
+}
+
+.dicas-senha::before {
+    content: "RECOMENDAÇÕES";
+}
+
+.situacao {
+    margin: 0 0 10px;
+
+    color: var(--verde);
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+
+    text-shadow: 0 0 12px rgba(57, 255, 120, 0.15);
+}
+
+#explicacao {
+    margin: 0 0 18px;
+
+    color: var(--texto-suave);
+    font-size: 0.85rem;
+    line-height: 1.7;
+}
+
+/* Barra de segurança */
+
+.barra {
+    width: 100%;
+    height: 10px;
+    padding: 2px;
+    overflow: hidden;
+
+    background: #101a12;
+    border: 1px solid #263c2b;
+    border-radius: 2px;
+}
+
+#barraSeguranca {
+    position: relative;
+
+    width: 0;
+    height: 100%;
+
+    background: var(--verde);
+    box-shadow: 0 0 10px rgba(57, 255, 120, 0.4);
+
+    transition: width 0.8s cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+
+#barraSeguranca::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.45),
+        transparent
+    );
+
+    animation: brilhoBarra 2.5s ease-in-out infinite;
+}
+
+#nota {
+    margin: 12px 0 0;
+
+    color: var(--verde);
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+#motivoNota {
+    margin-top: 12px;
+    padding: 10px 12px;
+
+    color: var(--verde-claro);
+    background: var(--verde-fraco);
+    border-left: 2px solid var(--verde);
+
+    font-size: 0.8rem;
+    line-height: 1.7;
+
+    animation: aparecer 0.35s ease both;
+}
+
+/* Estimativa de tempo */
+
+#qtdtentativas,
+#tempoOnline,
+#tempoOffline {
+    margin: 9px 0;
+
+    line-height: 1.7;
+    font-size: 0.82rem;
+    overflow-wrap: anywhere;
+}
+
+#tempoOnline,
+#tempoOffline {
+    color: var(--verde);
+    font-weight: 700;
+}
+
+.observacao {
+    margin: 15px 0 0;
+    padding-top: 12px;
+
+    color: var(--texto-suave);
+    border-top: 1px dashed rgba(57, 255, 120, 0.16);
+
+    font-size: 0.72rem;
+    line-height: 1.7;
+}
+
+/* Dicas de melhoria */
+
+.dicas-senha ul {
+    margin: 0;
+    padding-left: 22px;
+
+    font-size: 0.82rem;
+    line-height: 1.9;
+}
+
+.dicas-senha li {
+    padding-left: 4px;
+    margin-bottom: 5px;
+
+    transition:
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.dicas-senha li:hover {
+    color: var(--verde-claro);
+    transform: translateX(3px);
+}
+
+/* Conclusão abaixo dos resultados */
+
+.conclusao {
+    margin-top: 24px;
+    padding: 22px;
+
+    background: rgba(57, 255, 120, 0.045);
+    border: 1px solid var(--borda-forte);
+    border-left: 3px solid var(--verde);
+    border-radius: 4px;
+
+    animation: entradaResultado 0.55s ease both;
+}
+
+.conclusao h2 {
+    margin: 12px 0;
+    color: var(--verde);
+}
+
+.conclusao p:not(.etiqueta) {
+    color: var(--texto-suave);
+    font-size: 0.85rem;
+    line-height: 1.8;
+}
+
+.conclusao button {
+    width: 100%;
+    margin-top: 12px;
+}
+
+/* Animações */
+
+@keyframes entradaPainel {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.985);
+        filter: blur(3px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes entradaResultado {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+        clip-path: inset(0 0 15% 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+@keyframes cursorTerminal {
+    to {
+        visibility: hidden;
+    }
+}
+
+@keyframes gradeDigital {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 0 34px;
+    }
+}
+
+@keyframes varredura {
+    from {
+        transform: translateY(-30%);
+    }
+
+    to {
+        transform: translateY(30%);
+    }
+}
+
+@keyframes brilhoBarra {
+    0%, 100% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    35% {
+        opacity: 0.8;
+    }
+
+    70% {
+        opacity: 0;
+    }
+}
+
+/* Ocultação de elementos */
+
+[hidden] {
+    display: none !important;
+}
+
+/* Responsividade */
+
+@media (max-width: 480px) {
+    body {
+        padding: 16px 10px;
+    }
+
+    .painel {
+        padding: 20px 16px;
+    }
+
+    .painel::before {
+        margin: -20px -16px 24px;
+        padding: 12px;
+
+        font-size: 0.62rem;
+        letter-spacing: 0.8px;
+    }
+
+    h1 {
+        font-size: 1.65rem;
+    }
+
+    .campo-senha {
+        flex-direction: column;
+    }
+
+    .campo-senha button {
+        width: 100%;
+    }
+
+    .analisador {
+        padding: 15px;
+    }
+
+    .resumo-seguranca,
+    .estimativa,
+    .dicas-senha {
+        padding: 15px;
+    }
+
+    .conclusao {
+        padding: 17px;
+    }
+}
+
+/* Acessibilidade */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}

@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Identificação | EPA 3110</title>
+
+    <link rel="stylesheet" href="/css/formulario.css">
+    <script src="/js/form.js" defer></script>
+</head>
+<body>
+    <main class="painel">
+        <p class="etiqueta">EPA 3110 // ACESSO RESTRITO</p>
+
+        <h1>Identificação</h1>
+
+        <p class="descricao">
+            Informe seus dados para iniciar a análise de segurança
+            de senhas. Não utilize uma senha real durante a atividade.
+        </p>
+
+        <form id="formulario">
+            <label for="idade">Idade</label>
+
+            <input
+                type="number"
+                id="idade"
+                name="idade"
+                min="1"
+                max="120"
+                placeholder="Informe sua idade"
+                required
+            >
+
+            <label for="sexo">Gênero</label>
+
+            <select id="sexo" name="sexo" required>
+                <option value="" disabled selected>
+                    Selecione uma opção
+                </option>
+                <option value="Masculino">Masculino</option>
+                <option value="Feminino">Feminino</option>
+                <option value="Não binário">Não binário</option>
+            </select>
+
+            <button type="submit" id="enviar">
+                Continuar
+            </button>
+
+            <p id="mensagem" role="status" aria-live="polite"></p>
+        </form>
+
+        <footer class="creditos">
+            <p>
+                Feito por Vixie Neves, Caiky David, João Paulo Antônio,
+                Renan Lamarca, Tiago de Jesus e Vinicius Franca.
+            </p>
+
+            <p>
+                A IA foi utilizada unicamente para estilizar o site.
+            </p>
+        </footer>
+    </main>
+</body>
+</html>

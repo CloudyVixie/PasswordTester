@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Analisador de Senhas | EPA 3110</title>
+
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/main.js" defer></script>
+</head>
+<body>
+    <main class="painel">
+        <p class="etiqueta">EPA 3110 // SECURITY CORE</p>
+
+        <h1>Analisador de senhas</h1>
+
+        <p class="descricao">
+            Descubra o que torna uma senha mais difícil de adivinhar.
+        </p>
+
+        <p class="privacidade">
+            Sua senha é analisada somente neste navegador.
+            Ela não é enviada ao servidor nem armazenada no banco de dados.
+            Utilize uma senha fictícia.
+        </p>
+
+        <section class="recomendacoes">
+            <button id="recomendacoes" type="button">
+                Ver dicas de segurança
+            </button>
+
+            <ul id="listarecomendacoes" hidden>
+                <li>Prefira senhas longas, com 16 caracteres ou mais.</li>
+                <li>Misture letras, números e símbolos.</li>
+                <li>Evite nomes, datas e sequências previsíveis.</li>
+                <li>Não reutilize senhas em serviços diferentes.</li>
+            </ul>
+        </section>
+
+        <section class="analisador">
+            <label for="senha">Digite uma senha fictícia</label>
+
+            <div class="campo-senha">
+                <input
+                    type="password"
+                    id="senha"
+                    placeholder="Digite sua senha"
+                    autocomplete="off"
+                    spellcheck="false"
+                    aria-describedby="erroSenha"
+                >
+
+                <button
+                    type="button"
+                    id="mostrarSenha"
+                    aria-pressed="false"
+                >
+                    Mostrar
+                </button>
+            </div>
+
+            <p id="erroSenha" class="erro-senha" hidden>
+                Digite uma senha antes de continuar.
+            </p>
+
+            <button type="button" id="testar">
+                Analisar segurança
+            </button>
+
+            <p class="tentativas">
+                Análises restantes:
+                <strong id="restantes">5</strong>
+            </p>
+        </section>
+
+        <section
+            id="resultado"
+            class="resultado"
+            hidden
+            aria-live="polite"
+        >
+            <h2>Resultado da análise</h2>
+
+            <div class="resumo-seguranca">
+                <p id="situacao" class="situacao"></p>
+                <p id="explicacao"></p>
+
+                <div
+                    class="barra"
+                    role="progressbar"
+                    aria-label="Pontuação estimada de segurança"
+                    aria-valuemin="0"
+                    aria-valuemax="10"
+                    aria-valuenow="0"
+                    id="progresso"
+                >
+                    <div id="barraSeguranca"></div>
+                </div>
+
+                <p id="nota"></p>
+                <p id="motivoNota" hidden></p>
+            </div>
+
+            <div class="estimativa">
+                <h3>Tempo estimado para descobrir a senha</h3>
+
+                <p id="qtdtentativas"></p>
+                <p id="tempoOnline"></p>
+                <p id="tempoOffline"></p>
+
+                <p class="observacao">
+                    Simulação de busca exaustiva, não uma previsão exata.
+                    Ataques por dicionário podem descobrir senhas previsíveis
+                    mais rapidamente. O tempo real depende do hardware,
+                    do limite de tentativas e do algoritmo de hash.
+                </p>
+            </div>
+
+            <div class="dicas-senha">
+                <h3>Como melhorar</h3>
+                <ul id="dicas"></ul>
+            </div>
+
+            <section id="modalFinal" class="conclusao" hidden>
+                <p class="etiqueta">
+                    EPA 3110 // PARTICIPAÇÃO CONCLUÍDA
+                </p>
+
+                <h2>Obrigada por participar!</h2>
+
+                <p>
+                    Você concluiu as cinco análises.
+                    Obrigada por contribuir com o EPA da 3110!
+                </p>
+
+                <button type="button" id="confirmarModal">
+                    Voltar ao formulário
+                </button>
+            </section>
+        </section>
+    </main>
+</body>
+</html>
