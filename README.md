@@ -1,16 +1,6 @@
 # PasswordTester
 
-<p align="center">
-  <img src="https://img.shields.io/badge/HTML-CSS%20%26%20JavaScript-1f6feb?style=flat-square" alt="HTML, CSS e JavaScript">
-  <img src="https://img.shields.io/badge/Node.js-Express-238636?style=flat-square" alt="Node.js e Express">
-  <img src="https://img.shields.io/badge/MariaDB-database-6c757d?style=flat-square" alt="MariaDB">
-</p>
-
-O PasswordTester é uma aplicação simples para analisar senhas e mostrar alguns fatores que influenciam sua força. Fiz o projeto em uma tarde de domingo para ter algo funcional para apresentar na feira de cursos da escola, já que o tema da minha turma é cibersegurança.
-
-A ideia surgiu como uma alternativa caso o projeto principal não estivesse pronto a tempo. Como também faz parte dos meus projetos, deixei o código no GitHub para manter meu portfólio organizado e ter uma cópia de segurança.
-
----
+O PasswordTester é uma aplicação educativa que analisa características de uma senha e apresenta uma pontuação acompanhada de sugestões para torná-la menos previsível. O projeto foi desenvolvido para demonstrar conceitos de cibersegurança.
 
 ## O que o projeto faz
 
@@ -21,7 +11,7 @@ A ideia surgiu como uma alternativa caso o projeto principal não estivesse pron
 - Permite analisar até cinco senhas por sessão.
 - Registra idade e sexo dos participantes no MariaDB.
 
-A análise é feita no navegador. A senha digitada não é enviada para o servidor nem armazenada no banco de dados. O banco guarda somente os dados do formulário de participação.
+A análise da senha é feita no navegador. A senha digitada não é enviada ao servidor nem armazenada no banco de dados. O banco guarda somente os dados informados no formulário de participação.
 
 ## Tecnologias
 
@@ -31,7 +21,7 @@ A análise é feita no navegador. A senha digitada não é enviada para o servid
 
 ## Como executar
 
-É necessário ter o Node.js e o MariaDB instalados.
+É necessário ter Node.js e MariaDB instalados.
 
 1. Clone o repositório e entre na pasta do projeto.
 2. Instale as dependências:
@@ -53,21 +43,21 @@ A análise é feita no navegador. A senha digitada não é enviada para o servid
    );
    ```
 
-4. Confira as credenciais do banco em `backend/config.js`. A configuração inicial usa o usuário `root`, sem senha, e o banco `epa3110`. Altere os valores para corresponder ao seu ambiente.
+4. Confira as credenciais em `backend/config.js` e ajuste-as ao seu ambiente.
 5. Inicie o servidor:
 
    ```bash
    npm start
    ```
 
-6. Abra [http://localhost:3000](http://localhost:3000) no navegador.
+6. Acesse [http://localhost:3000](http://localhost:3000).
 
 ## Limitações
 
-Este projeto tem finalidade educativa e não substitui uma ferramenta profissional de avaliação de senhas. A pontuação usa critérios simples, e as estimativas de tempo são modelos aproximados: os resultados reais dependem, entre outros fatores, do método de hash, do hardware e dos limites impostos pelo serviço atacado.
+O PasswordTester tem finalidade educativa e não substitui uma ferramenta profissional de avaliação de senhas. A pontuação usa critérios simples, e as estimativas são modelos aproximados. Os resultados reais dependem do método de hash, do hardware e de outros fatores.
 
-O cenário offline apresentado usa uma referência de desempenho para NTLM e RTX 4090. Ele não representa a velocidade de quebra de todos os tipos de hash.
+O cenário offline usa uma referência de desempenho para NTLM e RTX 4090; não representa a velocidade de quebra de todos os tipos de hash.
 
 ## Uso de IA
 
-Os textos da interface e o CSS foram feitos por IA. A aplicação foi montada para atender à proposta da feira e servir como um projeto demonstrável.
+Os textos da interface e o CSS foram feitos com auxílio de IA. A aplicação e sua lógica foram organizadas para demonstrar o funcionamento da análise de senhas.
